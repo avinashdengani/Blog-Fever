@@ -26,4 +26,4 @@ require __DIR__.'/auth.php';
 
 
 //Application Routes
-Route::resource('categories', CategoriesController::class);
+Route::resource('categories', CategoriesController::class)->middleware('auth');
