@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Categories\CreateCategoryRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -13,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        return view('categories.index');
     }
 
     /**
@@ -23,7 +25,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -32,9 +34,16 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        //
+        //1.Validation is already done with the help of Form Request
+        //2.Store the data in db
+        Category::create([
+            'name' => $request->name
+        ]);
+
+        //3.return to index
+        return view('categories.index');
     }
 
     /**
