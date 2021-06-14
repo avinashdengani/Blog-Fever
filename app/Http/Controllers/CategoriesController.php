@@ -15,7 +15,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+        $categories = Category::latest('updated_at')->paginate(10);
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -43,7 +44,7 @@ class CategoriesController extends Controller
         ]);
 
         //3.return to index
-        return view('categories.index');
+        return redirect(route('categories.index'));
     }
 
     /**

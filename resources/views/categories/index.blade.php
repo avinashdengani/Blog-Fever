@@ -9,7 +9,24 @@
         <h2>Categories</h2>
     </div>
     <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $category)
+                <tr>
+                    <td>{{ $category->name }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+  </div>
+
+  <div class="mt-5 pagination">
+    {{$categories->links('vendor.pagination.bootstrap-4')}}
   </div>
 @endsection
