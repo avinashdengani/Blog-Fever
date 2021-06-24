@@ -27,3 +27,5 @@ require __DIR__.'/auth.php';
 
 //Application Routes
 Route::resource('categories', CategoriesController::class)->middleware('auth');
+
+//NOTE: Used raw url to delete category of category.destroy using javascript
