@@ -13,12 +13,14 @@
             <thead>
                 <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categories as $category)
                 <tr>
                     <td>{{ $category->name }}</td>
+                    <td><a href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-primary btn-sm fa fa-edit" ></a></td>
                 </tr>
                 @endforeach
             </tbody>
