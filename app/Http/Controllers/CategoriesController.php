@@ -43,6 +43,12 @@ class CategoriesController extends Controller
             'name' => $request->name
         ]);
 
+        session()->flash('success', 'Category created successfully!');
+        /**
+         * This method is fast than a class Session of Fasacdes according to laravel
+         * Flash method is used to request for session only once.
+         * Flash deletes a session automatically after one request.
+         */
         //3.return to index
         return redirect(route('categories.index'));
     }
