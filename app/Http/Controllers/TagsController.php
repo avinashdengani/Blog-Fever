@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Tags\CreateTagRequest;
+use App\Http\Requests\Tags\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -73,9 +74,12 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $tag->name = $request->name;
+        $tag->save();
+        session()->flash('success', 'Tag Updated Successfully');
+        return redirect(route('tags.index'));
     }
 
     /**
