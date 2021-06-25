@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagsController extends Controller
@@ -13,7 +14,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::latest('updated_at')->paginate(10);
+        return view('tags.index', compact(['tags']));
     }
 
     /**
@@ -29,7 +31,7 @@ class TagsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\    Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
