@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Tags\CreateTagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,13 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\    Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTagRequest $request)
     {
-        //
+        Tag::create([
+            'name' => $request->name
+        ]);
+        session()->flash('success', 'Tag created successfully!');
+        return redirect(route('tags.index'));
     }
 
     /**
