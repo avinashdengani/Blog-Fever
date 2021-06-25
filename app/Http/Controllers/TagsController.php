@@ -88,8 +88,10 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        session()->flash('success', 'Tag Deleted Successfully');
+        return redirect(route('tags.index'));
     }
 }
