@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Post\CreatePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -88,9 +89,20 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $data = $request->only(['title', 'excerpt', 'content', 'published_at', 'category_id']);
+
+        if($request->hasFile('image')) {
+            $image = $request->image->store('images/posts');
+            $data['image'] = $image;
+            $post->deleteImage();
+        }
+        $post->update($data);
+
+        $post->tags()->sync($request->tags);
+        session()->flash('success', 'Post updated successfully!');
+        return redirect(route('posts.index'));
     }
 
     /**
