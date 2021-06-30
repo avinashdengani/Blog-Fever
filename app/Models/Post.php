@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -28,4 +29,9 @@ class Post extends Model
     {
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
+    public function hasTag(int $tag_id):bool
+    {
+        return in_array($tag_id, $this->tags->pluck('id')->toArray());
+    }
+
 }
