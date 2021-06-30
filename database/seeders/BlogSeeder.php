@@ -30,48 +30,59 @@ class BlogSeeder extends Seeder
 
 
         $post1 = Post::create([
-            'title' => 'We reloaded our office to HOME!',
-            'excerpt' => Factory::create()->sentence(rand(12,18)),
+            'title' => 'We reloaded!',
+            'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
             'image' => 'images/1.jpg',
             'category_id' => $categoryDesign->id,
             'user_id' => 1,
-            'published_at' => Carbon::now()->format('y-m-d')
+            'published_at' => Carbon::now()->format('Y-m-d')
         ]);
 
         $post2 = Post::create([
-            'title' => "Let's make something creative!",
-            'excerpt' => Factory::create()->sentence(rand(12,18)),
+            'title' => "Let's make something!",
+            'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
-            'image' => 'images/1.jpg',
+            'image' => 'images/2.jpg',
             'category_id' => $categoryDesign->id,
             'user_id' => 1,
-            'published_at' => Carbon::now()->format('y-m-d')
+            'published_at' => Carbon::now()->format('Y-m-d')
         ]);
 
         $post3 = Post::create([
             'title' => 'Java is Awesome!',
-            'excerpt' => Factory::create()->sentence(rand(12,18)),
+            'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
-            'image' => 'images/1.jpg',
+            'image' => 'images/3.jpg',
             'category_id' => $categoryEngineering->id,
             'user_id' => 1,
-            'published_at' => Carbon::now()->format('y-m-d')
+            'published_at' => Carbon::now()->format('Y-m-d')
         ]);
 
         $post4 = Post::create([
             'title' => 'Corona Vaccination is free!',
-            'excerpt' => Factory::create()->sentence(rand(12,18)),
+            'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
-            'image' => 'images/1.jpg',
+            'image' => 'images/4.jpg',
             'category_id' => $categoryNews->id,
             'user_id' => 1,
-            'published_at' => Carbon::now()->format('y-m-d')
+            'published_at' => Carbon::now()->format('Y-m-d')
+        ]);
+
+        $post5 = Post::create([
+            'title' => 'Learn Laravel',
+            'excerpt' => Factory::create()->sentence(rand(5,9)),
+            'content' => Factory::create()->paragraphs(rand(3,8), true),
+            'image' => 'images/5.jpg',
+            'category_id' => $categoryNews->id,
+            'user_id' => 2,
+            'published_at' => Carbon::now()->format('Y-m-d')
         ]);
 
         $post1->tags()->attach([$tagDesign->id]);
         $post2->tags()->attach([$tagDesign->id, $tagCustomers->id]);
         $post3->tags()->attach([$tagCoding->id, $tagLaravel->id]);
         $post4->tags()->attach([$tagCustomers->id]);
+        $post5->tags()->attach([$tagCoding->id, $tagLaravel->id]);
     }
 }
