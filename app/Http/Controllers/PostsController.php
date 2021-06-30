@@ -14,7 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::latest('updated_at')->paginate(10);
+        return view("posts.index", compact(['posts']));
     }
 
     /**
