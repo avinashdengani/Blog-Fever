@@ -11,10 +11,17 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $posts = Post::simplePaginate(9);
+        $posts = Post::simplePaginate(3);
         $tags = Tag::all();
         $categories = Category::all();
 
         return view('blogs.index', compact(['posts', 'tags', 'categories']));
+    }
+
+    public function show(Post $post)
+    {
+        $tags = Tag::all();
+        $categories = Category::all();
+        return view('blogs.post', compact(['post', 'categories', 'tags']));
     }
 }
