@@ -25,7 +25,11 @@
         <ul class="blog-sidebar pl25">
             @foreach ($categories as $category )
             <li>
-                <a href="#">{{$category->name}}<span class="badge badge-pasific pull-right"></span></a>
+                <a href="#">{{$category->name}}
+                    <span class="badge badge-pasific pull-right">
+                        {{ $category->posts->count() }}
+                    </span>
+                </a>
             </li>
             @endforeach
         </ul>
