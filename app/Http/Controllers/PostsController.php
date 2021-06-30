@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\CreatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -38,9 +39,22 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        //
+        $image = $request->file('image')->store('images/posts');
+        $post = Post::create([
+            'title' => $request->title,
+            'excerpt' => $request->excerpt,
+            'content' => $request->content,
+            'image' => $image,
+            'category_id' => $request->category_id,
+            'user_id' => auth()->id(),
+            'published_at' => $request->published_at
+        ]);
+
+        $post->tags()->attach($request->tags);
+        session()->flash('success', 'Post created successfully!');
+        return redirect(route('posts.index'));
     }
 
     /**
