@@ -1,5 +1,5 @@
 @extends('layouts.admin-panel.app')
-
+@section('title', 'Blog-Fever | Categories')
 @section('content')
 <div class="d-flex justify-content-end mb-3">
     <a href="{{route('categories.create')}}" class="btn btn-outline-primary" >Add Category</a>

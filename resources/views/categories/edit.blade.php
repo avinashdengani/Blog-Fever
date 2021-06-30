@@ -1,5 +1,5 @@
 @extends('layouts.admin-panel.app')
-
+@section('title', 'Blog-Fever | Edit Category')
 @section('content')
 <div class="card">
     <div class="card-header">

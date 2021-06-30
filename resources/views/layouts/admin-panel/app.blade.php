@@ -11,7 +11,7 @@
     <!-- Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Hello, world!</title>
+    <title>@yield('title')</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,6 +48,9 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('posts.index')}}" class="nav-link">Posts</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('categories.index')}}" class="nav-link">Categories</a>
