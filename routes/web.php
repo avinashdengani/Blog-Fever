@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/blogs/{post}', [FrontendController::class, 'show'])->name('blogs.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
