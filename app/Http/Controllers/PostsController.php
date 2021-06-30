@@ -76,7 +76,9 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.edit', compact(['post', 'categories', 'tags']));
     }
 
     /**
