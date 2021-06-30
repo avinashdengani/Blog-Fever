@@ -33,7 +33,7 @@ class Post extends Model
     {
         return in_array($tag_id, $this->tags->pluck('id')->toArray());
     }
-    public function deleteTags()
+    public function deleteImage()
     {
         Storage::delete($this->image);
     }
