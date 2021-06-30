@@ -9,6 +9,13 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
+    public function getImagePathAttribute()
+    {
+        return 'storage/' .$this->image;
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
