@@ -25,12 +25,8 @@
                         <td>{{$post->excerpt}}</td>
                         <td>{{$post->category->name}}</td>
                         <td>
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">
-                                Edit
-                            </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="displayModal({{ $post->id }})" data-toggle="modal" data-target="#deleteModal">
-                                Delete
-                              </button>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-outline-warning btn-sm fa fa-edit"></a>
+                            <button type="button" class="btn btn-outline-danger btn-sm fa fa-trash" onclick="displayModal({{ $post->id }})" data-toggle="modal" data-target="#deleteModal"></button>
                         </td>
                     </tr>
                 @endforeach
@@ -47,7 +43,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="" method="POST" id="deletePostForm">
+        <form action="" method="POST" id="trashPostForm">
             @csrf
             @method('DELETE')
         <div class="modal-body">
@@ -70,8 +66,8 @@
 @section('page-level-scripts')
 <script>
     function displayModal(postId) {
-        var url = "/posts/" + postId;
-        $("#deletePostForm").attr('action', url);
+        var url = "/posts/trash/" + postId;
+        $("#trashPostForm").attr('action', url);
     }
 </script>
 @endsection
