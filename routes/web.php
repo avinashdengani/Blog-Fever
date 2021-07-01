@@ -28,8 +28,10 @@ require __DIR__.'/auth.php';
 
 
 //Application Routes
-Route::resource('categories', CategoriesController::class)->middleware('auth');
-Route::resource('tags', TagsController::class)->middleware('auth');
-Route::resource('posts', PostsController::class)->middleware('auth');
+Route::middleware(['auth'])->group(function() {
+    Route::resource('categories', CategoriesController::class);
+    Route::resource('tags', TagsController::class);
+    Route::resource('posts', PostsController::class);
+});
 
 //NOTE: Used raw url to delete category of category.destroy using javascript
