@@ -12,6 +12,8 @@ class Post extends Model
 
     protected $guarded = ['id'];
 
+    protected $dates = ['published_at'];
+
     public function getImagePathAttribute()
     {
         return 'storage/' .$this->image;
