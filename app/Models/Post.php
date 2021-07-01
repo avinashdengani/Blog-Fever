@@ -39,4 +39,13 @@ class Post extends Model
     {
         Storage::delete($this->image);
     }
+
+    /**
+     *  Query Scopes
+     */
+
+    public function scopePublished($query)
+    {
+        return $query->where('published_at', '<=', now());
+    }
 }
