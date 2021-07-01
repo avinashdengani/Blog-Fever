@@ -52,6 +52,9 @@
                             <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('users.index')}}" class="nav-link">Users</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('posts.index')}}" class="nav-link">Posts</a>
                         </li>
                         <li class="nav-item">
