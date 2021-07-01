@@ -61,6 +61,9 @@
                             <a href="{{route('tags.index')}}" class="nav-link">Tags</a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('posts.trashed')}}" class="nav-link">Trash</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{asset('/')}}" class="nav-link">Visit to Home Page</a>
                         </li>
                     </ul>
