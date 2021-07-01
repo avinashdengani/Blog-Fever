@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,6 +15,7 @@
     @yield('page-level-styles')
 
     <title>@yield('title')</title>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,25 +51,25 @@
                 <div class="card-body">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
+                            <a href="{{route('dashboard')}}" class="nav-link {{request()->is('dashboard') ? 'text-dark': ''}}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('users.index')}}" class="nav-link">Users</a>
+                            <a href="{{route('users.index')}}" class="nav-link {{request()->is('users') ? 'text-dark': ''}}">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('posts.index')}}" class="nav-link">Posts</a>
+                            <a href="{{route('posts.index')}}" class="nav-link {{request()->is('posts') ? 'text-dark': ''}}">Posts</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('categories.index')}}" class="nav-link">Categories</a>
+                            <a href="{{route('categories.index')}}" class="nav-link {{request()->is('categories') ? 'text-dark': ''}}">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('tags.index')}}" class="nav-link">Tags</a>
+                            <a href="{{route('tags.index')}}" class="nav-link {{request()->is('tags') ? 'text-dark': ''}}">Tags</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('posts.trashed')}}" class="nav-link">Trash</a>
+                            <a href="{{route('posts.trashed')}}" class="nav-link {{request()->is('posts/trashed') ? 'text-dark': ''}}">Trash</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{asset('/')}}" class="nav-link">Visit to Home Page</a>
+                            <a href="{{asset('/')}}" class="nav-link"> <i class="fa fa-home" ></i> Visit to Home Page</a>
                         </li>
                     </ul>
                 </div>
