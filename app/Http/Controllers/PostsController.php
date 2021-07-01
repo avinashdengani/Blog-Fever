@@ -111,8 +111,34 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::onlyTrashed()->findOrFail($id);
+        $post->deleteImage();
+        $post->forceDelete();
+
+        session()->flash('success', 'Post deleted successfully!');
+        return redirect(route('posts.trashed'));
+    }
+    public function trashed()
+    {
+        $trashed  = Post::onlyTrashed()->simplePaginate(10);
+        return view('posts.trashed', ['posts' => $trashed]);
+    }
+
+    public function trash(Post $post)
+    {
+        $post->delete();
+        session()->flash('success', 'Post has been sent to Trash. You can restore it.');
+        return redirect(route('posts.index'));
+    }
+
+    public function restore($id)
+    {
+        $trashedPost = Post::onlyTrashed()->findOrFail($id);
+        $trashedPost->restore();
+
+        session()->flash('success', 'Post has been restored successfully!');
+        return redirect(route('posts.index'));
     }
 }
