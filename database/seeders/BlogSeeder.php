@@ -33,8 +33,8 @@ class BlogSeeder extends Seeder
             'title' => 'We reloaded!',
             'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
-            'image' => 'images/1.jpg',
-            'category_id' => $categoryDesign->id,
+            'image' => 'images/posts/1.jpg',
+            'category_id' => $categoryTechnology->id,
             'user_id' => 1,
             'published_at' => Carbon::now()->format('Y-m-d')
         ]);
@@ -43,7 +43,7 @@ class BlogSeeder extends Seeder
             'title' => "Let's make something!",
             'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
-            'image' => 'images/2.jpg',
+            'image' => 'images/posts/2.jpg',
             'category_id' => $categoryDesign->id,
             'user_id' => 1,
             'published_at' => Carbon::now()->format('Y-m-d')
@@ -53,7 +53,7 @@ class BlogSeeder extends Seeder
             'title' => 'Java is Awesome!',
             'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
-            'image' => 'images/3.jpg',
+            'image' => 'images/posts/3.jpg',
             'category_id' => $categoryEngineering->id,
             'user_id' => 1,
             'published_at' => Carbon::now()->format('Y-m-d')
@@ -63,7 +63,7 @@ class BlogSeeder extends Seeder
             'title' => 'Corona Vaccination is free!',
             'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
-            'image' => 'images/4.jpg',
+            'image' => 'images/posts/4.jpg',
             'category_id' => $categoryNews->id,
             'user_id' => 1,
             'published_at' => Carbon::now()->format('Y-m-d')
@@ -73,7 +73,7 @@ class BlogSeeder extends Seeder
             'title' => 'Learn Laravel',
             'excerpt' => Factory::create()->sentence(rand(5,9)),
             'content' => Factory::create()->paragraphs(rand(3,8), true),
-            'image' => 'images/5.jpg',
+            'image' => 'images/posts/5.jpg',
             'category_id' => $categoryNews->id,
             'user_id' => 2,
             'published_at' => Carbon::now()->format('Y-m-d')
