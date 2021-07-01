@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('posts/trashed', [PostsController::class, 'trashed'])->name('posts.trashed');
     Route::put('posts/restore/{post}', [PostsController::class, 'restore'])->name('posts.restore');
     Route::resource('posts', PostsController::class);
+
+    Route::get('/users',[UsersController::class, 'index'])->name('users.index');
+    Route::put('/users/{user}/make-admin',[UsersController::class, 'makeAdmin'])->name('users.make-admin');
+    Route::put('/users/{user}/revoke-admin',[UsersController::class, 'revokeAdmin'])->name('users.revoke-admin');
 });
 
 //NOTE: Used raw url to delete category of category.destroy using javascript
