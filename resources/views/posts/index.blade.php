@@ -5,7 +5,7 @@
     <a href="{{route('posts.create')}}" class="btn btn-outline-primary">Add Post</a>
 </div>
 <div class="card">
-    <div class="card-header"><h2>Posts</h2></div>
+    <div class="card-header"><h2>Published Posts</h2></div>
     <div class="card-body">
         <table class="table">
             <thead>
