@@ -1,9 +1,9 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <a class="text-4xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-pink-700 hover:text-pink-800" href="{{asset('/')}}">
+                Blog-Fever
+              </a>
         </x-slot>
 
         <!-- Validation Errors -->
