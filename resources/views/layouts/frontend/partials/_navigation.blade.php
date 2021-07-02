@@ -1,3 +1,4 @@
+
 <!-- Navigation Area
 ===================================== -->
 <nav class="navbar navbar-pasific navbar-mp megamenu navbar-fixed-top">
@@ -14,10 +15,9 @@
 
         <div class="navbar-collapse collapse navbar-main-collapse">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{asset('/')}}">Home </a>
+                <li class="nav-item">
+                    <a href="{{asset('/')}}" class="nav-link">Home</a>
                 </li>
-
                 @if (auth()->check())
                     <li>
                         <a href="{{ route('dashboard') }}">Dashboard </a>
@@ -26,9 +26,11 @@
                     <li>
                         <a href="{{ route('login') }}">Login </a>
                     </li>
+                    <li>
+                        <a href="{{ route('register') }}">Sign Up</a>
+                    </li>
                 @endif
             </ul>
         </div>
     </div>
 </nav>
-
