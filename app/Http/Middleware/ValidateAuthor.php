@@ -18,7 +18,7 @@ class ValidateAuthor
     public function handle(Request $request, Closure $next)
     {
         if(is_object($request->post)) {
-            if(! $request->post->user_id == auth()->id()) {
+            if(! ($request->post->user_id == auth()->id())) {
                 return redirect(abort(401));
             }
         } else if(is_numeric($request->post)) {
