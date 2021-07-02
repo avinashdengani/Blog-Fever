@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,7 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">Blog Fever Admin Panel</a>
+        <a class="navbar-brand " href="{{route('dashboard')}}" style="color: #BE185D;">Blog Fever Admin Panel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -56,17 +55,26 @@
                         <li class="nav-item">
                             <a href="{{route('users.index')}}" class="nav-link {{request()->is('users') ? 'text-dark': ''}}">Users</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('posts.index')}}" class="nav-link {{request()->is('posts') ? 'text-dark': ''}}">Posts</a>
-                        </li>
+                        <!-- Default dropright button -->
+                        <div class="btn-group dropright">
+                            <a  type="button" class="nav-link {{request()->is('posts') ? 'text-dark': ''}} {{request()->is('posts/draft') ? 'text-dark': ''}} {{request()->is('posts/trashed') ? 'text-dark': ''}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Posts <i class="fa fa-chevron-right" ></i>
+                            </a>
+                            <div class="dropdown-menu">
+                            <!-- Dropdown menu links -->
+                                <li class="nav-item ">
+                                    <a href="{{route('posts.index')}}" class="nav-link {{request()->is('posts') ? 'text-dark': ''}}">Published posts</a>
+                                    <a href="{{route('posts.draft')}}" class="nav-link {{request()->is('posts/draft') ? 'text-dark': ''}}">Draft posts</a>
+                                    <a href="{{route('posts.trashed')}}" class="nav-link {{request()->is('posts/trashed') ? 'text-dark': ''}}">Trash posts</a>
+                                </li>
+                            </div>
+                        </div>
+
                         <li class="nav-item">
                             <a href="{{route('categories.index')}}" class="nav-link {{request()->is('categories') ? 'text-dark': ''}}">Categories</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('tags.index')}}" class="nav-link {{request()->is('tags') ? 'text-dark': ''}}">Tags</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('posts.trashed')}}" class="nav-link {{request()->is('posts/trashed') ? 'text-dark': ''}}">Trash</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{asset('/')}}" class="nav-link"> <i class="fa fa-home" ></i> Visit to Home Page</a>
