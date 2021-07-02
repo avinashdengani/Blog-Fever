@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,10 @@ class VerifyCategoriesCount
      */
     public function handle(Request $request, Closure $next)
     {
+        if(Category::count() === 0) {
+            session()->flash('error', 'Minimum one category must exist to create a post.');
+            return redirect(route('categories.create'));
+        }
         return $next($request);
     }
 }
