@@ -11,7 +11,10 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest('published_at')->published()->simplePaginate(3);
+        $posts = Post::search()
+                ->latest('published_at')
+                ->published()
+                ->simplePaginate(3);
         $tags = Tag::all();
         $categories = Category::all();
 
