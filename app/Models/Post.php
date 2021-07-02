@@ -50,4 +50,8 @@ class Post extends Model
     {
         return $query->where('published_at', '<=', now());
     }
+    public function scopeNotPublished($query)
+    {
+        return $query->where('published_at', '=', null)->orWhere('published_at', '>=', now());
+    }
 }
