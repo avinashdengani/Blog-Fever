@@ -27,4 +27,28 @@ class FrontendController extends Controller
         $categories = Category::all();
         return view('blogs.post', compact(['post', 'categories', 'tags']));
     }
+    public function category(Category $category)
+    {
+        $posts = $category->posts()
+                ->search()
+                ->latest('published_at')
+                ->published()
+                ->simplePaginate(3);
+
+        $tags = Tag::all();
+        $categories = Category::all();
+        return view('blogs.index', compact(['posts', 'tags', 'categories']));
+    }
+    public function tag(Tag $tag)
+    {
+        $posts = $tag->posts()
+                ->search()
+                ->latest('published_at')
+                ->published()
+                ->simplePaginate(3);
+
+        $tags = Tag::all();
+        $categories = Category::all();
+        return view('blogs.index', compact(['posts', 'tags', 'categories']));
+    }
 }
