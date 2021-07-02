@@ -18,7 +18,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('updated_at')->paginate(10);
+        $posts = Post::latest('updated_at')->published()->paginate(10);
         return view("posts.index", compact(['posts']));
     }
 
@@ -140,5 +140,11 @@ class PostsController extends Controller
 
         session()->flash('success', 'Post has been restored successfully!');
         return redirect(route('posts.index'));
+    }
+
+    public function draft()
+    {
+        $draft  = Post::latest('updated_at')->notPublished()->paginate(10);
+        return view('posts.draft', ['posts' => $draft]);
     }
 }
