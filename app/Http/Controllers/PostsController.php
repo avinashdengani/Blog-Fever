@@ -11,11 +11,16 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['validateAuthor'])->only('edit', 'update', 'destroy', 'trash');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $posts = Post::latest('updated_at')->published()->paginate(10);
