@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('tags', TagsController::class);
     Route::delete('posts/trash/{post}', [PostsController::class, 'trash'])->name('posts.trash');
     Route::get('posts/trashed', [PostsController::class, 'trashed'])->name('posts.trashed');
+    Route::get('posts/draft', [PostsController::class, 'draft'])->name('posts.draft');
     Route::put('posts/restore/{post}', [PostsController::class, 'restore'])->name('posts.restore');
     Route::resource('posts', PostsController::class);
 
