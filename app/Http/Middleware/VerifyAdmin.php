@@ -16,6 +16,9 @@ class VerifyAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        if( ! auth()->user()->isAdmin()) {
+            return redirect(abort(401));
+        }
         return $next($request);
     }
 }
