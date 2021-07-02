@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/blogs/{post}', [FrontendController::class, 'show'])->name('blogs.show');
+Route::get('/blogs/category/{category}', [FrontendController::class, 'category'])->name('blogs.category');
+Route::get('/blogs/tag/{tag}', [FrontendController::class, 'tag'])->name('blogs.tag');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
