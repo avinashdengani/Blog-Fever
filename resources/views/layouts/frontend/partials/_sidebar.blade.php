@@ -8,8 +8,15 @@
     <div class="pr25 pl25 clearfix">
         <form action="#">
             <div class="blog-sidebar-form-search">
-                <input type="text" name="search" class="" placeholder="e.g. Javascript">
-                <button type="submit" name="submit" class="pull-right"><i class="fa fa-search"></i></button>
+                <form action="{{asset('/')}}">
+                    <input type="text"
+                           name="search"
+                           placeholder="e.g. Javascript"
+                           value="{{request('search')}}">
+                    <button type="submit" class="pull-right">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
             </div>
         </form>
     </div>
