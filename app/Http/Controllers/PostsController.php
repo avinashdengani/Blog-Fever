@@ -23,7 +23,11 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = Post::latest('updated_at')->published()->paginate(10);
+        if(auth()->user()->isAdmin()) {
+            $posts = Post::latest('updated_at')->published()->paginate(10);
+        }else {
+            $posts = Post::where('user_id', auth()->id())->latest('updated_at')->published()->paginate(10);
+        }
         return view("posts.index", compact(['posts']));
     }
 
