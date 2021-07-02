@@ -32,9 +32,9 @@
         <ul class="blog-sidebar pl25">
             @foreach ($categories as $category )
             <li>
-                <a href="#">{{$category->name}}
+                <a href="{{route('blogs.category', $category->id)}}">{{$category->name}}
                     <span class="badge badge-pasific pull-right">
-                        {{ $category->posts->count() }}
+                        {{ $category->posts()->published()->count() }}
                     </span>
                 </a>
             </li>
@@ -54,7 +54,7 @@
         <ul class="tag">
             @foreach ($tags as $tag )
                 <li>
-                    <a href="#">{{$tag->name}}</a>
+                    <a href="{{ route('blogs.tag', $tag->id) }}">{{$tag->name}}</a>
                 </li>
             @endforeach
         </ul>
