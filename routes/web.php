@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function() {
     Route::put('posts/restore/{post}', [PostsController::class, 'restore'])->name('posts.restore');
     Route::resource('posts', PostsController::class);
 
+});
+
+Route::middleware(['auth', 'verifyAdmin'])->group(function () {
     Route::get('/users',[UsersController::class, 'index'])->name('users.index');
     Route::put('/users/{user}/make-admin',[UsersController::class, 'makeAdmin'])->name('users.make-admin');
     Route::put('/users/{user}/revoke-admin',[UsersController::class, 'revokeAdmin'])->name('users.revoke-admin');
