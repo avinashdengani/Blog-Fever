@@ -35,5 +35,5 @@
             </div>
         @endforeach
     </div>
-    {{$posts->links('vendor.pagination.simple-default')}}
+    {{$posts->appends(['search' => request('search')])->links('vendor.pagination.simple-default')}}
 @endsection
