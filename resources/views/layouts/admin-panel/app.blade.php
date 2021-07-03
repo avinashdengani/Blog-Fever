@@ -52,9 +52,11 @@
                         <li class="nav-item">
                             <a href="{{route('dashboard')}}" class="nav-link {{request()->is('dashboard') ? 'text-dark': ''}}">Dashboard</a>
                         </li>
+                        @if (auth()->user()->isAdmin())
                         <li class="nav-item">
                             <a href="{{route('users.index')}}" class="nav-link {{request()->is('users') ? 'text-dark': ''}}">Users</a>
                         </li>
+                        @endif
                         <!-- Default dropright button -->
                         <div class="btn-group dropright">
                             <a  type="button" class="nav-link {{request()->is('posts') ? 'text-dark': ''}} {{request()->is('posts/draft') ? 'text-dark': ''}} {{request()->is('posts/trashed') ? 'text-dark': ''}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
