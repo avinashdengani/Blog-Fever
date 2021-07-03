@@ -27,6 +27,7 @@
                         <td>{{$post->category->name}}</td>
                         <td>{{$post->published_at}}</td>
                         <td>
+                            <a href="{{route('posts.show', $post->id)}}" class="btn btn-outline-primary btn-sm fa fa-eye"></a>
                             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-outline-warning btn-sm fa fa-edit"></a>
                             <button type="button" class="btn btn-outline-danger btn-sm fa fa-trash" onclick="displayModal({{ $post->id }})" data-toggle="modal" data-target="#deleteModal"></button>
                         </td>
