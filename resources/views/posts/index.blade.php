@@ -14,6 +14,9 @@
                     <th>Title</th>
                     <th>Excerpt</th>
                     <th>Category</th>
+                    @if (auth()->user()->isAdmin())
+                        <th>Author</th>
+                    @endif
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,6 +27,9 @@
                         <td>{{$post->title}}</td>
                         <td>{{$post->excerpt}}</td>
                         <td>{{$post->category->name}}</td>
+                        @if (auth()->user()->isAdmin())
+                            <td>{{$post->author->name}}</td>
+                        @endif
                         <td>
                             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-outline-warning btn-sm fa fa-edit"></a>
                             <button type="button" class="btn btn-outline-danger btn-sm fa fa-trash" onclick="displayModal({{ $post->id }})" data-toggle="modal" data-target="#deleteModal"></button>
