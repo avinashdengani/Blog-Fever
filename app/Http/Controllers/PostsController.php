@@ -13,7 +13,8 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['validateAuthor'])->only('edit', 'update', 'destroy', 'trash');
+        $this->middleware(['validateUserForEdit'])->only('edit', 'update');
+        $this->middleware(['validateUserForDelete'])->only('destroy', 'trash', 'show');
         $this->middleware(['verifyCategoriesCount'])->only('create', 'store');
     }
     /**
@@ -76,7 +77,9 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.show',compact(['post' ,'categories', 'tags']));
     }
 
     /**
