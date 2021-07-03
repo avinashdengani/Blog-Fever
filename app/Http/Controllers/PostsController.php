@@ -132,7 +132,7 @@ class PostsController extends Controller
     }
     public function trashed()
     {
-        $trashed  = Post::onlyTrashed()->simplePaginate(10);
+        $trashed  = Post::where('user_id', auth()->id())->onlyTrashed()->simplePaginate(10);
         return view('posts.trashed', ['posts' => $trashed]);
     }
 
@@ -154,7 +154,7 @@ class PostsController extends Controller
 
     public function draft()
     {
-        $draft  = Post::latest('updated_at')->notPublished()->paginate(10);
+        $draft  =  Post::where('user_id', auth()->id())->latest('updated_at')->notPublished()->paginate(10);
         return view('posts.draft', ['posts' => $draft]);
     }
 }
