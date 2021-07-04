@@ -38,8 +38,10 @@
 
         <img src="{{asset($post->image_path)}}" alt="Blog Image" class="img-responsive">
 
-        <div>
-            {!! $post->content !!}
+        <div class="blog-post-content">
+            <div class="col mt50">
+                {!! $post->content !!}
+            </div>
         </div>
 
         <div class="blog-post-read-tag mt50">
