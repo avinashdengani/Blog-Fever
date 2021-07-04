@@ -6,6 +6,7 @@ use App\Http\Middleware\ValidateAuthor;
 use App\Http\Middleware\validateUserForDelete;
 use App\Http\Middleware\validateUserForEdit;
 use App\Http\Middleware\VerifyAdmin;
+use App\Http\Middleware\verifyAdminCount;
 use App\Http\Middleware\VerifyCategoriesCount;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -71,5 +72,6 @@ class Kernel extends HttpKernel
         'validateUserForEdit' => validateUserForEdit::class,
         'validateUserForDelete' => validateUserForDelete::class,
         'verifyCategoriesCount' => VerifyCategoriesCount::class,
+        'verifyAdminCount' => verifyAdminCount::class,
     ];
 }
