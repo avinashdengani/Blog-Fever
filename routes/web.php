@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function() {
 Route::middleware(['auth', 'verifyAdmin'])->group(function () {
     Route::get('/users',[UsersController::class, 'index'])->name('users.index');
     Route::put('/users/{user}/make-admin',[UsersController::class, 'makeAdmin'])->name('users.make-admin');
-    Route::put('/users/{user}/revoke-admin',[UsersController::class, 'revokeAdmin'])->name('users.revoke-admin');
+    Route::put('/users/{user}/revoke-admin',[UsersController::class, 'revokeAdmin'])->name('users.revoke-admin')->middleware('verifyAdminCount');
 });
 
 //NOTE: Used raw url to delete category of category.destroy using javascript
