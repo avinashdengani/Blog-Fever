@@ -59,4 +59,8 @@ class User extends Authenticatable
     {
         return Gravatar::src($this->email, 80);
     }
+    public function scopeAdminCount($query)
+    {
+        return $query->where("role", "=", "admin")->count();
+    }
 }
