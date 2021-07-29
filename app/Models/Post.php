@@ -12,6 +12,9 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
+    const PENDING = 'pending';
+    const APPROVED = 'approved';
+    const DISAPPROVED = 'disapproved';
     protected $guarded = ['id'];
 
     protected $dates = ['published_at'];
@@ -61,5 +64,9 @@ class Post extends Model
             return $query->where("title", "like", "%$search%");
         }
         return $query;
+    }
+    public function scopeApprovedPosts($query)
+    {
+        return $query->where('approval_status', '=', self::APPROVED);
     }
 }
