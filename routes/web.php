@@ -34,6 +34,9 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth'])->group(function() {
     Route::resource('categories', CategoriesController::class);
     Route::resource('tags', TagsController::class);
+    Route::get('/posts/requests', [PostsController::class, 'publishPostRequest'])->name('posts.requests');
+    Route::put('/posts/requests/approve/{id}', [PostsController::class, 'approvePostRequest'])->name('posts.requests.approve');
+    Route::put('/posts/requests/disapprove/{id}', [PostsController::class, 'disapprovePostRequest'])->name('posts.requests.disapprove');
     Route::delete('posts/trash/{post}', [PostsController::class, 'trash'])->name('posts.trash');
     Route::get('posts/trashed', [PostsController::class, 'trashed'])->name('posts.trashed');
     Route::get('posts/draft', [PostsController::class, 'draft'])->name('posts.draft');
@@ -46,6 +49,7 @@ Route::middleware(['auth', 'verifyAdmin'])->group(function () {
     Route::get('/users',[UsersController::class, 'index'])->name('users.index');
     Route::put('/users/{user}/make-admin',[UsersController::class, 'makeAdmin'])->name('users.make-admin');
     Route::put('/users/{user}/revoke-admin',[UsersController::class, 'revokeAdmin'])->name('users.revoke-admin')->middleware('verifyAdminCount');
+
 });
 
 //NOTE: Used raw url to delete category of category.destroy using javascript
