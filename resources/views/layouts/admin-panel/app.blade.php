@@ -65,6 +65,9 @@
                             <div class="dropdown-menu">
                             <!-- Dropdown menu links -->
                                 <li class="nav-item ">
+                                    @if (auth()->user()->isAdmin())
+                                        <a href="{{route('posts.requests')}}" class="nav-link {{request()->is('posts/requests') ? 'text-dark': ''}}">Requested posts</a>
+                                    @endif
                                     <a href="{{route('posts.index')}}" class="nav-link {{request()->is('posts') ? 'text-dark': ''}}">Published posts</a>
                                     <a href="{{route('posts.draft')}}" class="nav-link {{request()->is('posts/draft') ? 'text-dark': ''}}">Draft posts</a>
                                     <a href="{{route('posts.trashed')}}" class="nav-link {{request()->is('posts/trashed') ? 'text-dark': ''}}">Trash posts</a>
