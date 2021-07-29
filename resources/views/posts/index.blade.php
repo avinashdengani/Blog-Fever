@@ -16,6 +16,8 @@
                     <th>Category</th>
                     @if (auth()->user()->isAdmin())
                         <th>Author</th>
+                    @else
+                        <th>Status</th>
                     @endif
                     <th>Actions</th>
                 </tr>
@@ -29,11 +31,33 @@
                         <td>{{$post->category->name}}</td>
                         @if (auth()->user()->isAdmin())
                             <td>{{$post->author->name}}</td>
+                        @else
+                                @if ($post->approval_status == 'approved')
+                                <td>
+                                    <label class="text-success border border-success border-3 rounded-pill p-1">{{$post->approval_status}}</label>
+                                </td>
+                                @elseif ($post->approval_status == 'disapproved')
+                                    <td>
+                                        <label class="text-danger border border-danger border-3 rounded-pill p-1">{{$post->approval_status}}</label>
+                                    </td>
+                                @else
+                                    <td>
+                                        <label class="text-warning border border-warning border-3 rounded-pill p-1 ">{{$post->approval_status}}</label>
+                                    </td>
+                                @endif
                         @endif
                         <td>
                             <a href="{{route('posts.show', $post->id)}}" class="btn btn-outline-primary btn-sm fa fa-eye"></a>
                             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-outline-warning btn-sm fa fa-edit {{$post->user_id == auth()->id() ? '' : 'disabled'}}"></a>
-                            <button type="button" class="btn btn-outline-danger btn-sm fa fa-trash" onclick="displayModal({{ $post->id }})" data-toggle="modal" data-target="#deleteModal"></button>
+                            @if (!($post->user_id == auth()->id()) && (auth()->user()->isAdmin()))
+                                <form action="{{ route('posts.requests.disapprove', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button  type="submit" class="btn btn-outline-danger btn-sm fa fa-ban"></button>
+                                </form>
+                            @else
+                                <button type="button" class="btn btn-outline-danger btn-sm fa fa-trash" onclick="displayModal({{ $post->id }})" data-toggle="modal" data-target="#deleteModal"></button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
