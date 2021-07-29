@@ -14,6 +14,7 @@ class FrontendController extends Controller
         $posts = Post::search()
                 ->latest('published_at')
                 ->published()
+                ->approvedPosts()
                 ->simplePaginate(3);
         $tags = Tag::all();
         $categories = Category::all();
