@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('excerpt');
             $table->text('content');
             $table->string('image');
+            $table->string('approval_status')->default('pending');
             $table->timestamp('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
