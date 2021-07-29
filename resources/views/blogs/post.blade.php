@@ -48,7 +48,7 @@
             <i class="fa fa-tags"></i>
             Tags:
             @foreach ($post->tags as $tag)
-                <a href="#">{{ $tag->name }}</a>
+                <a href="#">{{ $tag->name }}</a>{{$loop->last ? '' : ','}}
             @endforeach
         </div>
 
