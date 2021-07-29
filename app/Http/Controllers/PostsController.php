@@ -13,6 +13,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
+        $this->middleware(['verifyAdmin'])->only('publishPostRequest', 'approvePostRequest', 'disapprovePostRequest');
         $this->middleware(['validateUserForEdit'])->only('edit', 'update');
         $this->middleware(['validateUserForDelete'])->only('destroy', 'trash', 'show');
         $this->middleware(['verifyCategoriesCount'])->only('create', 'store');
@@ -26,7 +27,7 @@ class PostsController extends Controller
     public function index()
     {
         if(auth()->user()->isAdmin()) {
-            $posts = Post::latest('updated_at')->published()->paginate(10);
+            $posts = Post::latest('updated_at')->approvedPosts()->published()->paginate(10);
         }else {
             $posts = Post::where('user_id', auth()->id())->latest('updated_at')->published()->paginate(10);
         }
@@ -54,16 +55,25 @@ class PostsController extends Controller
     public function store(CreatePostRequest $request)
     {
         $image = $request->file('image')->store('images/posts');
-        $post = Post::create([
-            'title' => $request->title,
-            'excerpt' => $request->excerpt,
-            'content' => $request->content,
-            'image' => $image,
-            'category_id' => $request->category_id,
-            'user_id' => auth()->id(),
-            'published_at' => $request->published_at
-        ]);
 
+        if(auth()->user()->isAdmin()) {
+            $approval_status = Post::APPROVED;
+        }else {
+            $approval_status = Post::PENDING;
+        }
+
+        $data =
+            [
+                'title' => $request->title,
+                'excerpt' => $request->excerpt,
+                'content' => $request->content,
+                'image' => $image,
+                'category_id' => $request->category_id,
+                'user_id' => auth()->id(),
+                'published_at' => $request->published_at,
+                'approval_status' => $approval_status
+            ];
+        $post = Post::create($data);
         $post->tags()->attach($request->tags);
         session()->flash('success', 'Post created successfully!');
         return redirect(route('posts.index'));
@@ -112,8 +122,9 @@ class PostsController extends Controller
             $post->deleteImage();
         }
         $post->update($data);
-
+        $post->update( ['approval_status' => Post::PENDING] );
         $post->tags()->sync($request->tags);
+        // $post->update(['approval_status' => Post::PENDING]);
         session()->flash('success', 'Post updated successfully!');
         return redirect(route('posts.index'));
     }
@@ -159,5 +170,26 @@ class PostsController extends Controller
     {
         $draft  =  Post::where('user_id', auth()->id())->latest('updated_at')->notPublished()->paginate(10);
         return view('posts.draft', ['posts' => $draft]);
+    }
+    public function publishPostRequest()
+    {
+        $requestsPosts = Post::where('approval_status' ,'=', Post::PENDING )->published()->latest('updated_at')->paginate(10);
+        return view('posts.requests-approval',['posts' => $requestsPosts]);
+    }
+    public function approvePostRequest($id)
+    {
+        $post = Post::where('id', '=', $id);
+        $post->update(['approval_status' => Post::APPROVED]);
+
+        session()->flash('success', 'Post approved successfully!');
+        return redirect(route('posts.requests'));
+    }
+    public function disapprovePostRequest($id)
+    {
+        $post = Post::where('id', '=', $id);
+        $post->update(['approval_status' => Post::DISAPPROVED]);
+
+        session()->flash('success', 'Post disapproved successfully!');
+        return redirect(route('posts.requests'));
     }
 }
